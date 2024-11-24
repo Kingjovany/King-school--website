@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphabet Pronunciation App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .alphabet {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .alphabet button {
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input {
+            padding: 5px;
+            font-size: 16px;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Alphabet Pronunciation App</h1>
+    
+    <div class="alphabet" id="alphabetButtons"></div>
+    
+    <audio id="pronunciationAudio"></audio>
+    
+    <h2>Registration</h2>
+    <form id="registrationForm">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="tel" id="phone" placeholder="Phone Number" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const alphabetButtons = document.getElementById('alphabetButtons');
+        const audio = document.getElementById('pronunciationAudio');
+        const form = document.getElementById('registrationForm');
+
+        // Create alphabet buttons
+        alphabet.split('').forEach(letter => {
+            const button = document.createElement('button');
+            button.textContent = letter;
+            button.onclick = () => pronounceLetter(letter);
+            alphabetButtons.appendChild(button);
+        });
+
+        function pronounceLetter(letter) {
+            // In a real app, you would have actual audio files for each letter
+            // For this example, we'll use text-to-speech API
+            const utterance = new SpeechSynthesisUtterance(letter);
+            speechSynthesis.speak(utterance);
+        }
+
+        form.onsubmit = (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+
+            // In a real app, you would send this data to a server
+            console.log('Registration submitted:', { username, email, phone, password });
+            alert('Registration successful!');
+            form.reset();
+        };
+    </script>
+</body>
+</html>

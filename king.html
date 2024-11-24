@@ -1,0 +1,50 @@
+To code pictures, you can either create visual elements directly through code (e.g., using graphic libraries) or embed existing images into your program. Here's a breakdown of different ways to "code" pictures:
+
+1. Generate Pictures Programmatically
+
+You can generate images using various programming languages and libraries:
+
+Python:
+
+Use the PIL (Pillow) library to create, manipulate, or save images.
+
+Example: Drawing a simple image using Pillow.
+
+
+from PIL import Image, ImageDraw
+
+# Create a blank image with white background
+img = Image.new('RGB', (200, 200), color = (255, 255, 255))
+draw = ImageDraw.Draw(img)
+
+# Draw a rectangle and a circle
+draw.rectangle([50, 50, 150, 150], outline="black", width=3)
+draw.ellipse([60, 60, 140, 140], outline="blue", width=3)
+
+# Save the image
+img.save('output_image.png')
+
+JavaScript (with HTML5 Canvas):
+
+You can draw directly on a web page using JavaScript and the canvas element.
+
+
+<canvas id="myCanvas" width="200" height="200"></canvas>
+<script>
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    // Draw a rectangle
+    ctx.fillStyle = "red";
+    ctx.fillRect(50, 50, 100, 100);
+
+    // Draw a circle
+    ctx.beginPath();
+    ctx.arc(100, 100, 50, 0, 2 * Math.PI);
+    ctx.stroke();
+</script>
+
+
+2. Embed Existing Images
+
+You can load existing image files into your program and display 
